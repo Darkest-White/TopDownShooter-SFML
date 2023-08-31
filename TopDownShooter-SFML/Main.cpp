@@ -17,14 +17,16 @@ private:
 
 public:
 
-	float x, y, w, h, speed = 0;
+	float x, y, dx, dy, w, h, speed = 0;
 	int dir = 0;
-	String file;
+	string file;
+
 	Image image;
 	Texture texture;
+
 	Sprite sprite;
 
-	Player(String f, int x, int y, float w, float h)
+	Player(string f, int x, int y, float w, float h)
 	{
 		file = f;
 		this->x = x;
@@ -36,21 +38,51 @@ public:
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, w, h));
+		sprite.setOrigin(w / 2, h / 2);
+		sprite.setPosition(x, y);
 	}
 
 	void update(float time)
 	{
 		switch (dir)
 		{
+		case 0:
+			dx = dy = 0;
+			break;
+
 		case 1:
+			dx = speed;
+			dy = 0;
+			sprite.setRotation(0);
 			break;
+
 		case 2:
+			dx = -speed;
+			dy = 0;
+			sprite.setRotation(180);
 			break;
+
 		case 3:
+			dy = speed;
+			dx = 0;
+			sprite.setRotation(90);
 			break;
+
 		case 4:
+			dy = -speed;
+			dx = 0;
+			sprite.setRotation(-90);
 			break;
+
+		default:
+			dx = dy = 0;
 		}
+
+		x += dx * time;
+		y += dy * time;
+
+		speed = 0;
+		sprite.setPosition(x, y);
 	}
 };
 
@@ -59,24 +91,13 @@ int main()
 {
 	RenderWindow win(VideoMode(win_width, win_height), "TopDownShooter");
 
+	Player p("hero/hero.png", win_width / 2, win_height / 2, 313, 206);
+
 	float time = clk.getElapsedTime().asMilliseconds();
 	clk.restart();
 	time = time / 800;
-	
-	float hero_speed = 0.5;
 
-	Image hero_image;
-	hero_image.loadFromFile("img/hero/hero.png");
-
-	Texture hero_texture;
-	hero_texture.loadFromImage(hero_image);
-
-	Sprite hero_sprite;
-	hero_sprite.setTexture(hero_texture);
-	hero_sprite.setTextureRect(IntRect(0, 0, 313, 207));
-	hero_sprite.setOrigin(313 / 2, 207 / 2);
-	hero_sprite.setPosition(win_width / 2, win_height / 2);
-
+	float current_frame = 0;
 
 	while (win.isOpen())
 	{
@@ -90,29 +111,42 @@ int main()
 
 		if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
 		{
-			hero_sprite.setRotation(-90);
-			hero_sprite.move(0, -hero_speed * time);
+			p.dir = 4;
+			p.speed = 0.5;
+
+			current_frame += 0.005 * time;
+			if (current_frame > 3) current_frame = 0;
+			p.sprite.setTextureRect(IntRect(313 * int(current_frame), 206 * int(current_frame), 313, 206));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S))
 		{
-			hero_sprite.setRotation(90);
-			hero_sprite.move(0, hero_speed * time);
+			p.dir = 3;
+			p.speed = 0.5;
+			current_frame += 0.005 * time;
+			if (current_frame > 3) current_frame = 0;
+			p.sprite.setTextureRect(IntRect(313 * int(current_frame), 206 * int(current_frame), 313, 206));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
 		{
-			hero_sprite.setRotation(180);
-			hero_sprite.move(-hero_speed * time, 0);
+			p.dir = 2;
+			p.speed = 0.5;
+			current_frame += 0.005 * time;
+			if (current_frame > 3) current_frame = 0;
+			p.sprite.setTextureRect(IntRect(313 * int(current_frame), 206 * int(current_frame), 313, 206));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D))
 		{
-			hero_sprite.setRotation(0);
-			hero_sprite.move(hero_speed * time, 0);
+			p.dir = 1;
+			p.speed = 0.5;
+			current_frame += 0.005 * time;
+			if (current_frame > 3) current_frame = 0;
+			p.sprite.setTextureRect(IntRect(313 * int(current_frame), 206 * int(current_frame), 313, 206));
 		}
 
-		cout << time << endl;
 
 		win.clear();
-		win.draw(hero_sprite);
+		p.update(time);
+		win.draw(p.sprite);
 		win.display();
 	}
 }
