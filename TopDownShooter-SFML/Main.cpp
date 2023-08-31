@@ -1,5 +1,6 @@
 #include<iostream>
 #include<SFML\Graphics.hpp>
+#include"map.h"
 using namespace std;
 using namespace sf;
 
@@ -99,6 +100,16 @@ int main()
 
 	float current_frame = 0;
 
+
+	Image map_image;
+	map_image.loadFromFile("img/map/map.png");
+
+	Texture map_texture;
+	map_texture.loadFromImage(map_image);
+
+	Sprite map_sprite;
+	map_sprite.setTexture(map_texture);
+
 	while (win.isOpen())
 	{
 		while (win.pollEvent(ev))
@@ -145,8 +156,24 @@ int main()
 
 
 		win.clear();
+
+		for (int i = 0; i < map_height; i++)
+		{
+			for (int j = 0; j < map_width; j++)
+			{
+				if (tile_map[i][j] == ' ') map_sprite.setTextureRect(IntRect(0, 0, 32, 32));
+				if (tile_map[i][j] == 's') map_sprite.setTextureRect(IntRect(32, 0, 32, 32));
+				if (tile_map[i][j] == '0') map_sprite.setTextureRect(IntRect(64, 0, 32, 32));
+
+				map_sprite.setPosition(j * 32, i * 32);
+
+				win.draw(map_sprite);
+			}
+		}
+
 		p.update(time);
 		win.draw(p.sprite);
+
 		win.display();
 	}
 }
