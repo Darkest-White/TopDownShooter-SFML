@@ -13,16 +13,16 @@ int main()
 	int win_width = 1600;
 	int win_height = 900;
 	RenderWindow window;
-	window.create(sf::VideoMode(win_width, win_height), "The game");
+	window.create(VideoMode(win_width, win_height), "TopDownShooter");
 	window.setVerticalSyncEnabled(true);
 
 	ResourseLoader loader;
 
-	loader.load("Actor.png");
-	loader.load("Bullet.png");
-	loader.load("NoTexture.png");
+	loader.Load("Actor.png");
+	loader.Load("Bullet.png");
+	loader.Load("NoTexture.png");
 
-	Player player = Player(loader.getTextureByName("Actor.png"), { 400, 300 }, -50);
+	Player player = Player(loader.GetTextureByName("Actor.png"), { 400, 300 }, -50);
 	int cooldown = 0;
 	int enemyOnScreen = 0;
 	int killsPoints = 0;
@@ -67,13 +67,13 @@ int main()
 					x = rand() % 800;
 					y = rand() % 600;
 				}
-				enemyList.emplace_back(new Enemy(loader.getTextureByName("Actor.png"), { x, y }, 0));
+				enemyList.emplace_back(new Enemy(loader.GetTextureByName("Actor.png"), { x, y }, 0));
 				enemyOnScreen++;
 			}
 
 			if (!enemyList.empty()) for (auto enemy : enemyList)
 			{
-				enemy->runAI(player);
+				enemy->RunAI(player);
 			}
 			elapsed -= update_ms;
 		}
@@ -81,20 +81,20 @@ int main()
 		if (elapsed.asMilliseconds() > update_ms.asMilliseconds() / 2.0f)
 		{
 			cooldown += 15;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.goSide(3);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.goSide(1);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.goSide(7);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.goSide(5);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.goSide(0);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.goSide(2);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.goSide(4);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.goSide(6);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(3);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(1);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(7);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(5);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.GoSide(0);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(2);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.GoSide(4);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(6);
 
 			window.clear(sf::Color(244, 164, 96, 255));
 
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && cooldown >= 200)
 			{
-				bulletList.push_back(player.shootBullet(loader.getTextureByName("Bullet.png")));
+				bulletList.push_back(player.ShootBullet(loader.GetTextureByName("Bullet.png")));
 				cooldown = 0;
 			}
 			if (!bulletList.empty()) for (auto bullet : bulletList)
@@ -118,7 +118,7 @@ int main()
 				window.draw(enemy->sprite);
 				if (enemy->checkCollision(player)) player.deleted = true;
 			}
-			player.watchTarget(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+			player.WatchTarget(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
 			window.draw(player.sprite);
 			killsText.setString(std::to_string(killsPoints));
 			window.draw(killsText);

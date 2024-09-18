@@ -1,17 +1,17 @@
 #pragma once
-#include "Entity.h"
-class Enemy : public Entity
+#include "GameObject.h"
+class Enemy : public GameObject
 {
 private:
-	void moveForward();
-	void watchTarget(Entity);
+	void MoveForward();
+	void WatchTarget(GameObject target);
 	float speed = 1.0;
 	float angle;
+
 public:
 	Enemy(Texture texture, Vector2f position, float angle);
-	void runAI(Entity);
-	bool deleted;
 	~Enemy();
-
+	void RunAI(GameObject);
+	bool deleted;
 };
 

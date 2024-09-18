@@ -1,6 +1,6 @@
 #pragma once
-#include "Entity.h"
-class Bullet : public Entity
+#include "GameObject.h"
+class Bullet : public GameObject
 {
 private:
 	float speed;

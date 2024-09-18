@@ -1,11 +1,10 @@
 #pragma once
 #include "SFML\System.hpp"
 #include "SFML\Graphics.hpp"
-#include <list>
-#include <string>
 #include <string>
 #include <sstream>
 #include <vector>
+#include <list>
 #include <iterator>
 #include <algorithm>
 using namespace std;
@@ -19,7 +18,8 @@ private:
 
 public:
 	ResourseLoader();
-	void load(string);
-	Texture getTextureByName(const string&);
 	~ResourseLoader();
+
+	void Load(string);
+	Texture GetTextureByName(const string&);
 };

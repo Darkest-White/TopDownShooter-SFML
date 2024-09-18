@@ -13,15 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Basic Classes">
+      <UniqueIdentifier>{3a73c895-2ab8-454e-9d71-01bdd68c64c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
@@ -33,15 +33,21 @@
     <ClCompile Include="ResourseLoader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -52,6 +58,15 @@
     </ClInclude>
     <ClInclude Include="ResourseLoader.h">
       <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Исходные файлы\Basic Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
