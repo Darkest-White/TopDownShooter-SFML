@@ -31,14 +31,14 @@ int main()
 	font.loadFromFile("ARIAL.TTF");
 	Text killsText;
 	killsText.setFont(font);
-	killsText.setFillColor(sf::Color::Black);
-	killsText.setString(std::to_string(killsPoints));
+	killsText.setFillColor(Color::Black);
+	killsText.setString(to_string(killsPoints));
 	killsText.setCharacterSize(20);
 
 
 	Clock clock;
 	Time elapsed = clock.restart();
-	const Time update_ms = sf::milliseconds(30.0f);
+	const Time update_ms = milliseconds(30.0f);
 	list<Bullet*> bulletList;
 	list<Enemy*> enemyList;
 
@@ -81,18 +81,18 @@ int main()
 		if (elapsed.asMilliseconds() > update_ms.asMilliseconds() / 2.0f)
 		{
 			cooldown += 15;
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(3);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(1);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(7);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(5);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.GoSide(0);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.GoSide(2);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.GoSide(4);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.GoSide(6);
+			if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::S)) player.GoSide(3);
+			if (Keyboard::isKeyPressed(Keyboard::D) && Keyboard::isKeyPressed(Keyboard::S)) player.GoSide(1);
+			if (Keyboard::isKeyPressed(Keyboard::D) && Keyboard::isKeyPressed(Keyboard::W)) player.GoSide(7);
+			if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::W)) player.GoSide(5);
+			if (Keyboard::isKeyPressed(Keyboard::D)) player.GoSide(0);
+			if (Keyboard::isKeyPressed(Keyboard::S)) player.GoSide(2);
+			if (Keyboard::isKeyPressed(Keyboard::A)) player.GoSide(4);
+			if (Keyboard::isKeyPressed(Keyboard::W)) player.GoSide(6);
 
-			window.clear(sf::Color(244, 164, 96, 255));
+			window.clear(Color(244, 164, 96, 255));
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && cooldown >= 200)
+			if (Mouse::isButtonPressed(Mouse::Left) && cooldown >= 200)
 			{
 				bulletList.push_back(player.ShootBullet(loader.GetTextureByName("Bullet.png")));
 				cooldown = 0;
@@ -118,9 +118,9 @@ int main()
 				window.draw(enemy->sprite);
 				if (enemy->checkCollision(player)) player.deleted = true;
 			}
-			player.WatchTarget(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+			player.WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
 			window.draw(player.sprite);
-			killsText.setString(std::to_string(killsPoints));
+			killsText.setString(to_string(killsPoints));
 			window.draw(killsText);
 			window.display();
 		}

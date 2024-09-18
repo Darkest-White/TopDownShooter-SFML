@@ -1,7 +1,8 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Texture texture, Vector2f position) : texture(texture), position(position)
+GameObject::GameObject(Texture texture, Vector2f position, ObjType type) : 
+	texture(texture), position(position), type(type)
 {
 	this->texture.setSmooth(true);
 	CreateSprite();

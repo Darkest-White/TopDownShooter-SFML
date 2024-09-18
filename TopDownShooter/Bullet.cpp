@@ -3,7 +3,7 @@
 
 
 Bullet::Bullet(Texture texture, Vector2f position, float angle, float speed, float lifetime) : 
-	GameObject(texture, position), angle(angle), speed(speed), lifeTime(lifetime)
+	GameObject(texture, position, ObjType::Projectile), angle(angle), speed(speed), lifeTime(lifetime)
 {
 	this->deleted = false;
 }

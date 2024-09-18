@@ -1,5 +1,4 @@
 #include <string>
-#include "SFML\System.hpp"
 #include "SFML\Graphics.hpp"
 #include "ResourseLoader.h"
 #include <iostream>
@@ -19,9 +18,10 @@ private:
 protected:
 	void UpdatePosition();
 	Vector2f position;
+	ObjType type;
 
 public:
-	GameObject(Texture texture, Vector2f position);
+	GameObject(Texture texture, Vector2f position, ObjType type);
 	virtual ~GameObject();
 
 	Sprite sprite;

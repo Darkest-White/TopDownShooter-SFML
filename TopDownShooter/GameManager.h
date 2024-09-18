@@ -1,5 +1,6 @@
 #pragma once
 #include"GameObject.h"
+#include"Message.h"
 #include<list>
 
 class GameManager

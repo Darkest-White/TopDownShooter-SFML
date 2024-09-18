@@ -1,8 +1,7 @@
 #include "Enemy.h"
 
-
 Enemy::Enemy(Texture texture, Vector2f position, float angle) :
-	GameObject(texture, position), angle(angle)
+	GameObject(texture, position, ObjType::Enemy), angle(angle)
 {
 	sprite.setColor(Color(0, 100, 0));
 	deleted = false;

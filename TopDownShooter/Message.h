@@ -2,7 +2,7 @@
 #include"GameObject.h"
 
 enum class MsgType { Move, Death, Create, DealDamage, DamageToPlayer };
-enum class ObjType { Tower, Projectile, Enemy };
+enum class ObjType { Projectile, Enemy, Player };
 
 struct Message
 {

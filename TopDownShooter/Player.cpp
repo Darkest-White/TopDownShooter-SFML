@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(Texture texture, Vector2f position, float angle) :
-	GameObject(texture, position), angle(angle)
+	GameObject(texture, position, ObjType::Player), angle(angle)
 {
 	this->sprite.setRotation(angle);
 	deleted = false;
