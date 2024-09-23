@@ -2,6 +2,9 @@
 #include "GameManager.h"
 #include "Message.h"
 
+#include"Enemy.h"
+#include"Player.h"
+
 GameManager* GameManager::instance = nullptr;
 
 GameManager::GameManager() : objs(), msgs()
@@ -30,10 +33,34 @@ GameManager* GameManager::GetInstance()
 	return instance;
 }
 
+void GameManager::SpawnEnemy(GameObject* player, ResourseLoader loader, int win_width, int win_height)
+{
+	float x = rand() % win_width, y = rand() % win_height;
+	while (!((x >= player->GetPosition().x + 50) || (x <= player->GetPosition().y - 50)) ||
+		!((y >= player->GetPosition().y + 50) || (y <= player->GetPosition().y - 50)))
+	{
+		x = rand() % 800;
+		y = rand() % 600;
+	}
+
+	Message* msg = new Message;
+	msg->type = MsgType::Create;
+	Enemy* b = new Enemy(loader.GetTextureByName("Actor.png"), { x, y }, 0, player);
+	msg->create.new_object = b;
+	SendMsg(msg);
+}
+
+void GameManager::SpawnBullet(Player* player, ResourseLoader loader)
+{
+	Message* msg = new Message;
+	msg->type = MsgType::Create;
+	Bullet* b = new Bullet(loader.GetTextureByName("Bullet.png"), player->GetPosition(), player->GetAngle());
+	msg->create.new_object = b;
+	SendMsg(msg);
+}
+
 void GameManager::Update(float dt)
 {
-	//spawnEnemy(dt);
-
 	for (auto obj : objs)
 	{
 		obj->Update(dt);
@@ -56,11 +83,6 @@ void GameManager::Update(float dt)
 		case MsgType::Create:
 		{
 			objs.push_back(m->create.new_object);
-		} break;
-
-		case MsgType::DamageToPlayer:
-		{
-			cout << "Player took " << m->damage_to_player.damage << " points of damage" << endl;
 		} break;
 		}
 

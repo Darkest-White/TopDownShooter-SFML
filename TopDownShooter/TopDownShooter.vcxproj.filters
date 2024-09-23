@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\Basic Classes">
       <UniqueIdentifier>{3a73c895-2ab8-454e-9d71-01bdd68c64c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{d3825892-551c-4fdc-a52f-660600313332}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -42,6 +45,9 @@
     <ClCompile Include="Message.cpp">
       <Filter>Исходные файлы\Basic Classes</Filter>
     </ClCompile>
+    <ClCompile Include="VectorMath.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -67,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Message.h">
       <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorMath.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

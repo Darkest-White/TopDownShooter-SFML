@@ -5,14 +5,17 @@
 class Bullet : public GameObject
 {
 private:
-	float speed;
+	float velocity = 25;
 	float angle;
-	float lifeTime;
+	float lifeTime = 350;
 
 public:
-	Bullet(Texture texture, Vector2f position, float angle = 0, float speed = 0, float lifetime = 0);
-	Bullet& checkEveryFrame();
+	Bullet(Texture texture, Vector2f position, float angle = 0);
 	~Bullet();
+
+	Bullet& checkEveryFrame();
 	bool deleted;
+
+	virtual void Update(float dt);
 };
 

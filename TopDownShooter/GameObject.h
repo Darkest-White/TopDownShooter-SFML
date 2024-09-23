@@ -1,6 +1,7 @@
 #include <string>
 #include "SFML\Graphics.hpp"
 #include "ResourseLoader.h"
+#include "VectorMath.h"
 #include <iostream>
 using namespace std;
 using namespace sf;
@@ -16,7 +17,6 @@ private:
 	void CreateSprite();
 
 protected:
-	void UpdatePosition();
 	Vector2f position;
 	ObjType type;
 
@@ -25,10 +25,12 @@ public:
 	virtual ~GameObject();
 
 	Sprite sprite;
-	virtual bool checkCollision(GameObject);
+	virtual void checkCollision(GameObject target);
+
 	virtual Vector2f GetPosition();
+	virtual ObjType GetType();
 
 	virtual void Update(float dt);
 	virtual void SendMSG(Message* m);
-	void Draw(RenderWindow& win);
+	void Draw(RenderWindow& window);
 };

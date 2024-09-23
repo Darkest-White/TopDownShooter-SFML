@@ -8,13 +8,21 @@ class Player : public GameObject
 {
 private:
 	float angle;
+	int hp = 100;
+	float velocity = 1.5;
+
+	bool game_over = false;
 
 public:
 	Player(Texture texture, Vector2f position, float angle);
 	~Player();
 
-	void GoSide(int);
+	void GoSide(int side);
 	void WatchTarget(float, float);
-	Bullet* ShootBullet(Texture);
-	bool deleted;
+
+	float GetAngle();
+	bool GetGameStatus();
+
+	virtual void Update(float dt);
+	virtual void SendMSG(Message* m);
 };

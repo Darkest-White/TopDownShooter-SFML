@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Texture texture, Vector2f position, ObjType type) : 
+GameObject::GameObject(Texture texture, Vector2f position, ObjType type) :
 	texture(texture), position(position), type(type)
 {
 	this->texture.setSmooth(true);
@@ -25,15 +25,14 @@ Vector2f GameObject::GetPosition()
 	return position;
 }
 
-bool GameObject::checkCollision(GameObject target)
+ObjType GameObject::GetType()
 {
-	if (this->sprite.getGlobalBounds().intersects(target.sprite.getGlobalBounds())) return true;
-	else return false;
+	return type;
 }
 
-void GameObject::UpdatePosition()
+void GameObject::checkCollision(GameObject target)
 {
-	this->sprite.setPosition(position);
+
 }
 
 void GameObject::Update(float dt)
@@ -46,7 +45,8 @@ void GameObject::SendMSG(Message* m)
 
 }
 
-void GameObject::Draw(RenderWindow& win)
+void GameObject::Draw(RenderWindow& window)
 {
-	
+	sprite.setPosition(position);
+	window.draw(sprite);
 }

@@ -3,8 +3,7 @@
 Player::Player(Texture texture, Vector2f position, float angle) :
 	GameObject(texture, position, ObjType::Player), angle(angle)
 {
-	this->sprite.setRotation(angle);
-	deleted = false;
+	sprite.setRotation(angle);
 }
 
 Player::~Player()
@@ -20,19 +19,47 @@ void Player::WatchTarget(float x, float y)
 
 void Player::GoSide(int side)
 {
-	if (side == 0)	 position.x += 5;
-	if (side == 1) { position.x += 1.5; position.y += 1.5; }
-	if (side == 2)   position.y += 5;
-	if (side == 3) { position.x -= 1.5; position.y += 1.5; }
-	if (side == 4)   position.x -= 5;
-	if (side == 5) { position.x -= 1.5; position.y -= 1.5; }
-	if (side == 6)   position.y -= 5;
-	if (side == 7) { position.x += 1.5; position.y -= 1.5; }
-	UpdatePosition();
+	if (side == 0)	 position.x += velocity + 3;
+	if (side == 1) { position.x += velocity; position.y += velocity; }
+	if (side == 2)   position.y += velocity + 3;
+	if (side == 3) { position.x -= velocity; position.y += velocity; }
+	if (side == 4)   position.x -= velocity + 3;
+	if (side == 5) { position.x -= velocity; position.y -= velocity; }
+	if (side == 6)   position.y -= velocity + 3;
+	if (side == 7) { position.x += velocity; position.y -= velocity; }
 }
 
-Bullet* Player::ShootBullet(Texture texture)
+float Player::GetAngle()
 {
-	Bullet* bullet = new Bullet(texture, position, angle, 25, 350);
-	return bullet;
+	return angle;
+}
+
+bool Player::GetGameStatus()
+{
+	return game_over;
+}
+
+void Player::Update(float dt)
+{
+	if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::S)) GoSide(3);
+	if (Keyboard::isKeyPressed(Keyboard::D) && Keyboard::isKeyPressed(Keyboard::S)) GoSide(1);
+	if (Keyboard::isKeyPressed(Keyboard::D) && Keyboard::isKeyPressed(Keyboard::W)) GoSide(7);
+	if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::W)) GoSide(5);
+	if (Keyboard::isKeyPressed(Keyboard::D)) GoSide(0);
+	if (Keyboard::isKeyPressed(Keyboard::S)) GoSide(2);
+	if (Keyboard::isKeyPressed(Keyboard::A)) GoSide(4);
+	if (Keyboard::isKeyPressed(Keyboard::W)) GoSide(6);
+}
+
+void Player::SendMSG(Message* m)
+{
+	if (m->deal_damage.to_who == this)
+	{
+		hp -= m->deal_damage.damage;
+
+		if (hp <= 0)
+		{
+			game_over = true;
+		}
+	}
 }
