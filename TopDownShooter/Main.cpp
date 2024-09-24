@@ -1,6 +1,6 @@
 #include <iostream>
 #include "GameManager.h"
-#include "ResourseLoader.h"
+#include "ResourseManager.h"
 #include "Player.h"
 #include "Bullet.h"
 
@@ -13,14 +13,9 @@ int main()
 	window.setVerticalSyncEnabled(true);
 
 	GameManager* MGR = GameManager::GetInstance();
-	ResourseLoader loader;
+	ResourseManager* RSR = ResourseManager::GetInstance();
 
-	Message* msg = new Message;
-	msg->type = MsgType::Create;
-	Player* p = new Player(loader.GetTextureByName("Actor.png"), { 400, 300 });
-	msg->create.type = ObjType::Player;
-	msg->create.new_object = p;
-	MGR->SendMsg(msg);
+	MGR->SpawnPlayer(300, 400, RSR->GetInstance());
 
 	int cooldown = 0;
 	int killsPoints = 0;
@@ -43,7 +38,7 @@ int main()
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed) window.close();
-			if (p->GetGameStatus()) window.close();
+			if (MGR->GetGameStatus()) window.close();
 		}
 
 		elapsed += clock.restart();
@@ -51,7 +46,7 @@ int main()
 		{
 			while (MGR->GetCountEnemy() < 10)
 			{
-				MGR->SpawnEnemy(p, loader, win_width, win_height);
+				MGR->SpawnEnemy(MGR->GetPlayer(), RSR->GetInstance(), win_width, win_height);
 			}
 			elapsed -= update_ms;
 		}
@@ -66,7 +61,7 @@ int main()
 
 			if (Mouse::isButtonPressed(Mouse::Left) && cooldown >= 200)
 			{
-				MGR->SpawnBullet(p, loader);
+				MGR->SpawnBullet(MGR->GetPlayer(), RSR->GetInstance());
 				cooldown = 0;
 			}
 			/*if (!enemyList.empty()) for (auto enemy : enemyList)
@@ -74,7 +69,7 @@ int main()
 				window.draw(enemy->sprite);
 				if (enemy->checkCollision(player)) player.deleted = true;
 			}*/
-			p->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
+			MGR->GetPlayer()->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
 			killsText.setString(to_string(killsPoints));
 			window.draw(killsText);
 			window.display();

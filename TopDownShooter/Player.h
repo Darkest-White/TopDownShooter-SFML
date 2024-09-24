@@ -17,8 +17,6 @@ public:
 	void WatchTarget(float mouse_x, float mouse_y);
 	void GoSide(int side);
 
-	bool GetGameStatus();
-
 	virtual void Update(float dt);
 	virtual void SendMSG(Message* m);
 };

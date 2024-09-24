@@ -11,15 +11,19 @@ using namespace std;
 using namespace sf;
 
 
-class ResourseLoader
+class ResourseManager
 {
 private:
-	vector<pair<Texture, string>> allTexturesList;
+	static ResourseManager* instance;
+
+	vector<pair<Texture, string>> textures;
+
+	ResourseManager();
+	~ResourseManager();
 
 public:
-	ResourseLoader();
-	~ResourseLoader();
+	static ResourseManager* GetInstance();
 
-	void Load(string);
+	void Load(string texture_name);
 	Texture GetTextureByName(const string&);
 };

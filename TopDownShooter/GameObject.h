@@ -1,5 +1,5 @@
 #include "SFML\Graphics.hpp"
-#include "ResourseLoader.h"
+#include "ResourseManager.h"
 #include "VectorMath.h"
 #include <iostream>
 using namespace std;

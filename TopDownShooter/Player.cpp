@@ -29,11 +29,6 @@ void Player::GoSide(int side)
 	if (side == 7) { position.x += velocity; position.y -= velocity; }
 }
 
-bool Player::GetGameStatus()
-{
-	return game_over;
-}
-
 void Player::Update(float dt)
 {
 	if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::S)) GoSide(3);

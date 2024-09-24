@@ -33,7 +33,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ResourseLoader.cpp">
+    <ClCompile Include="ResourseManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
@@ -62,7 +62,7 @@
     <ClInclude Include="resource.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="ResourseLoader.h">
+    <ClInclude Include="ResourseManager.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">

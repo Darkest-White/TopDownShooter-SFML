@@ -7,19 +7,13 @@
 
 GameManager* GameManager::instance = nullptr;
 
-GameManager::GameManager() : players(), enemies(), projectiles(), messages()
+GameManager::GameManager() : enemies(), projectiles(), messages()
 {
 
 }
 
 GameManager::~GameManager()
 {
-	for (auto x : players)
-	{
-		delete x;
-	}
-	players.clear();
-
 	for (auto x : enemies)
 	{
 		delete x;
@@ -45,7 +39,15 @@ GameManager* GameManager::GetInstance()
 	return instance;
 }
 
-void GameManager::SpawnEnemy(GameObject* player, ResourseLoader loader, int win_width, int win_height)
+void GameManager::SpawnPlayer(int x, int y, ResourseManager* loader)
+{
+	Vector2f position;
+	position.x = x;
+	position.y = y;
+	player = new Player(loader->GetTextureByName("Actor.png"), position);
+}
+
+void GameManager::SpawnEnemy(Player* player, ResourseManager* loader, int win_width, int win_height)
 {
 	float x = rand() % win_width, y = rand() % win_height;
 	while (!((x >= player->GetPosition().x + 50) || (x <= player->GetPosition().y - 50)) ||
@@ -58,19 +60,19 @@ void GameManager::SpawnEnemy(GameObject* player, ResourseLoader loader, int win_
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
 	msg->create.type = ObjType::Enemy;
-	Enemy* e = new Enemy(loader.GetTextureByName("Actor.png"), { x, y }, player);
+	Enemy* e = new Enemy(loader->GetTextureByName("Actor.png"), { x, y }, player);
 	msg->create.new_object = e;
 	SendMsg(msg);
 
 	enemy_on_screen++;
 }
 
-void GameManager::SpawnBullet(Player* player, ResourseLoader loader)
+void GameManager::SpawnBullet(Player* player, ResourseManager* loader)
 {
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
 	msg->create.type = ObjType::Projectile;
-	Bullet* b = new Bullet(loader.GetTextureByName("Bullet.png"), player->GetPosition(), player->GetAngle());
+	Bullet* b = new Bullet(loader->GetTextureByName("Bullet.png"), player->GetPosition(), player->GetAngle());
 	msg->create.new_object = b;
 	SendMsg(msg);
 }
@@ -78,6 +80,16 @@ void GameManager::SpawnBullet(Player* player, ResourseLoader loader)
 int GameManager::GetCountEnemy()
 {
 	return enemy_on_screen;
+}
+
+Player* GameManager::GetPlayer()
+{
+	return player;
+}
+
+bool GameManager::GetGameStatus()
+{
+	return game_over;
 }
 
 void GameManager::CheckCollision()
@@ -113,10 +125,7 @@ void GameManager::CheckCollision()
 
 void GameManager::Update(float dt)
 {
-	for (auto obj : players)
-	{
-		obj->Update(dt);
-	}
+	player->Update(dt);
 	for (auto obj : enemies)
 	{
 		obj->Update(dt);
@@ -137,20 +146,18 @@ void GameManager::Update(float dt)
 		{
 		case MsgType::Death:
 		{
-			if (msg->create.type == ObjType::Player)
+			if (msg->death.type == ObjType::Player)
 			{
-				auto res = find(players.begin(), players.end(), msg->death.who_to_die);
-				delete* res;
-				players.erase(res);
+				game_over = true;
 			}
-			if (msg->create.type == ObjType::Enemy)
+			if (msg->death.type == ObjType::Enemy)
 			{
 				auto res = find(enemies.begin(), enemies.end(), msg->death.who_to_die);
 				delete* res;
 				enemies.erase(res);
 				enemy_on_screen--;
 			}
-			if (msg->create.type == ObjType::Projectile)
+			if (msg->death.type == ObjType::Projectile)
 			{
 				auto res = find(projectiles.begin(), projectiles.end(), msg->death.who_to_die);
 				delete* res;
@@ -160,10 +167,6 @@ void GameManager::Update(float dt)
 
 		case MsgType::Create:
 		{
-			if (msg->create.type == ObjType::Player)
-			{
-				players.push_back(msg->create.new_object);
-			}
 			if (msg->create.type == ObjType::Enemy)
 			{
 				enemies.push_back(msg->create.new_object);
@@ -177,10 +180,7 @@ void GameManager::Update(float dt)
 
 		if (msg->type == MsgType::DealDamage)
 		{
-			for (auto obj : players)
-			{
-				obj->SendMSG(msg);
-			}
+			player->SendMSG(msg);
 			for (auto obj : enemies)
 			{
 				obj->SendMSG(msg);
@@ -197,10 +197,7 @@ void GameManager::SendMsg(Message* m)
 
 void GameManager::DrawObjects(RenderWindow& window)
 {
-	for (auto obj : players)
-	{
-		obj->Draw(window);
-	}
+	player->Draw(window);
 	for (auto obj : enemies)
 	{
 		obj->Draw(window);
