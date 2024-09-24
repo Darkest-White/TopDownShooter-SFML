@@ -1,4 +1,3 @@
-#include <string>
 #include "SFML\Graphics.hpp"
 #include "ResourseLoader.h"
 #include "VectorMath.h"
@@ -12,22 +11,23 @@ enum class ObjType;
 #pragma once
 class GameObject
 {
-private:
-	Texture texture;
-	void CreateSprite();
-
 protected:
 	Vector2f position;
+	float angle;
 	ObjType type;
 
+	Texture texture;
+	Sprite sprite;
+	void CreateSprite();
+
 public:
-	GameObject(Texture texture, Vector2f position, ObjType type);
+	GameObject(Texture texture, Vector2f position, float angle, ObjType type);
 	virtual ~GameObject();
 
-	Sprite sprite;
 	virtual void checkCollision(GameObject target);
 
 	virtual Vector2f GetPosition();
+	virtual float GetAngle();
 	virtual ObjType GetType();
 
 	virtual void Update(float dt);

@@ -1,11 +1,11 @@
 #include "GameObject.h"
 
-
-GameObject::GameObject(Texture texture, Vector2f position, ObjType type) :
-	texture(texture), position(position), type(type)
+GameObject::GameObject(Texture texture, Vector2f position, float angle, ObjType type) :
+	texture(texture), position(position), angle(angle), type(type)
 {
 	this->texture.setSmooth(true);
 	CreateSprite();
+	sprite.setRotation(angle);
 }
 
 GameObject::~GameObject()
@@ -23,6 +23,11 @@ void GameObject::CreateSprite()
 Vector2f GameObject::GetPosition()
 {
 	return position;
+}
+
+float GameObject::GetAngle()
+{
+	return angle;
 }
 
 ObjType GameObject::GetType()

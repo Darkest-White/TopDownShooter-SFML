@@ -1,24 +1,22 @@
 #pragma once
 #include "GameManager.h"
 #include "GameObject.h"
-#include "Player.h"
 
 class Enemy : public GameObject
 {
-private:
-	void MoveForward();
-	void WatchTarget();
-	float velocity = 100;
-	float angle;
+protected:
 	int damage = 50;
+	float velocity = 100;
 
 	GameObject* target;
 	Vector2f direction;
 
+	void WatchTarget();
+	void Move(float dt);
+
 public:
-	Enemy(Texture texture, Vector2f position, float angle, GameObject* player);
+	Enemy(Texture texture, Vector2f position, GameObject* player);
 	~Enemy();
 
 	virtual void Update(float dt);
-	bool deleted;
 };

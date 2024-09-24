@@ -1,9 +1,9 @@
 #include "Player.h"
 
-Player::Player(Texture texture, Vector2f position, float angle) :
-	GameObject(texture, position, ObjType::Player), angle(angle)
+Player::Player(Texture texture, Vector2f position) :
+	GameObject(texture, position, 0, ObjType::Player)
 {
-	sprite.setRotation(angle);
+
 }
 
 Player::~Player()
@@ -11,9 +11,9 @@ Player::~Player()
 
 }
 
-void Player::WatchTarget(float x, float y)
+void Player::WatchTarget(float mouse_x, float mouse_y)
 {
-	angle = atan2f((x - sprite.getPosition().x), (sprite.getPosition().y - y)) * (180.0 / 3.14);
+	angle = atan2f((mouse_x - sprite.getPosition().x), (sprite.getPosition().y - mouse_y)) * (180.0 / 3.14);
 	sprite.setRotation(angle);
 }
 
@@ -27,11 +27,6 @@ void Player::GoSide(int side)
 	if (side == 5) { position.x -= velocity; position.y -= velocity; }
 	if (side == 6)   position.y -= velocity + 3;
 	if (side == 7) { position.x += velocity; position.y -= velocity; }
-}
-
-float Player::GetAngle()
-{
-	return angle;
 }
 
 bool Player::GetGameStatus()

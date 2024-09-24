@@ -4,17 +4,13 @@
 
 class Bullet : public GameObject
 {
-private:
+protected:
 	float velocity = 25;
-	float angle;
 	float lifeTime = 350;
 
 public:
-	Bullet(Texture texture, Vector2f position, float angle = 0);
+	Bullet(Texture texture, Vector2f position, float angle);
 	~Bullet();
-
-	Bullet& checkEveryFrame();
-	bool deleted;
 
 	virtual void Update(float dt);
 };

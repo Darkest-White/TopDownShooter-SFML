@@ -1,7 +1,7 @@
 #pragma once
 #include"GameObject.h"
 
-enum class MsgType { Move, Death, Create, DealDamage, DamageToPlayer };
+enum class MsgType { Move, Death, Create, DealDamage };
 enum class ObjType { Projectile, Enemy, Player };
 
 struct Message
@@ -32,12 +32,6 @@ struct Message
 			GameObject* to_who;
 			GameObject* by_whom;
 		} deal_damage;
-
-		struct
-		{
-			int damage;
-			GameObject* by_whom;
-		} damage_to_player;
 	};
 
 	Message();

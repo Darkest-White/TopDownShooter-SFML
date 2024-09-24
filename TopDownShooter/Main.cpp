@@ -26,7 +26,7 @@ int main()
 
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
-	Player* p = new Player(loader.GetTextureByName("Actor.png"), { 400, 300 }, 0);
+	Player* p = new Player(loader.GetTextureByName("Actor.png"), { 400, 300 });
 	msg->create.new_object = p;
 	MGR->SendMsg(msg);
 

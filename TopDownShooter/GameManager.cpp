@@ -1,9 +1,9 @@
 #include "SFML\Graphics.hpp"
 #include "GameManager.h"
-#include "Message.h"
 
 #include"Enemy.h"
 #include"Player.h"
+#include"Bullet.h"
 
 GameManager* GameManager::instance = nullptr;
 
@@ -45,7 +45,7 @@ void GameManager::SpawnEnemy(GameObject* player, ResourseLoader loader, int win_
 
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
-	Enemy* b = new Enemy(loader.GetTextureByName("Actor.png"), { x, y }, 0, player);
+	Enemy* b = new Enemy(loader.GetTextureByName("Actor.png"), { x, y }, player);
 	msg->create.new_object = b;
 	SendMsg(msg);
 }
