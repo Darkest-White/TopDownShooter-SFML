@@ -13,6 +13,8 @@ class GameObject
 {
 protected:
 	Vector2f position;
+	int hp;
+	int damage;
 	float angle;
 	ObjType type;
 
@@ -21,12 +23,13 @@ protected:
 	void CreateSprite();
 
 public:
-	GameObject(Texture texture, Vector2f position, float angle, ObjType type);
+	GameObject(Texture texture, Vector2f position, float angle, int hp, int damage, ObjType type);
 	virtual ~GameObject();
 
-	virtual void checkCollision(GameObject target);
+	virtual bool checkCollision(GameObject target);
 
 	virtual Vector2f GetPosition();
+	virtual int GetDamage();
 	virtual float GetAngle();
 	virtual ObjType GetType();
 

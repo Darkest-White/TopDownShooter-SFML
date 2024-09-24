@@ -2,7 +2,9 @@
 
 ResourseLoader::ResourseLoader()
 {
-
+	Load("Actor.png");
+	Load("Bullet.png");
+	Load("NoTexture.png");
 }
 
 ResourseLoader::~ResourseLoader()

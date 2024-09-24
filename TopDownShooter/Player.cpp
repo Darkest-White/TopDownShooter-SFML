@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(Texture texture, Vector2f position) :
-	GameObject(texture, position, 0, ObjType::Player)
+	GameObject(texture, position, 0, 100, 0, ObjType::Player)
 {
 
 }

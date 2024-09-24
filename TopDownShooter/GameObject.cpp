@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
-GameObject::GameObject(Texture texture, Vector2f position, float angle, ObjType type) :
-	texture(texture), position(position), angle(angle), type(type)
+GameObject::GameObject(Texture texture, Vector2f position, float angle, int hp, int damage, ObjType type) :
+	texture(texture), position(position), angle(angle), hp(hp), damage(damage), type(type)
 {
 	this->texture.setSmooth(true);
 	CreateSprite();
@@ -25,6 +25,11 @@ Vector2f GameObject::GetPosition()
 	return position;
 }
 
+int GameObject::GetDamage()
+{
+	return damage;
+}
+
 float GameObject::GetAngle()
 {
 	return angle;
@@ -35,9 +40,10 @@ ObjType GameObject::GetType()
 	return type;
 }
 
-void GameObject::checkCollision(GameObject target)
+bool GameObject::checkCollision(GameObject target)
 {
-
+	if (this->sprite.getGlobalBounds().intersects(target.sprite.getGlobalBounds())) return true;
+	else return false;
 }
 
 void GameObject::Update(float dt)

@@ -5,7 +5,6 @@
 class Enemy : public GameObject
 {
 protected:
-	int damage = 50;
 	float velocity = 100;
 
 	GameObject* target;
@@ -19,4 +18,5 @@ public:
 	~Enemy();
 
 	virtual void Update(float dt);
+	virtual void SendMSG(Message* msg);
 };

@@ -1,13 +1,8 @@
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-#include "GameManager.h"
-#include "Player.h"
 #include <iostream>
-#include "Bullet.h"
-#include <algorithm>
-#include <list>
-#include "Enemy.h"
+#include "GameManager.h"
 #include "ResourseLoader.h"
+#include "Player.h"
+#include "Bullet.h"
 
 int main()
 {
@@ -20,18 +15,14 @@ int main()
 	GameManager* MGR = GameManager::GetInstance();
 	ResourseLoader loader;
 
-	loader.Load("Actor.png");
-	loader.Load("Bullet.png");
-	loader.Load("NoTexture.png");
-
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
 	Player* p = new Player(loader.GetTextureByName("Actor.png"), { 400, 300 });
+	msg->create.type = ObjType::Player;
 	msg->create.new_object = p;
 	MGR->SendMsg(msg);
 
 	int cooldown = 0;
-	int enemyOnScreen = 0;
 	int killsPoints = 0;
 
 	Font font;
@@ -42,11 +33,9 @@ int main()
 	killsText.setString(to_string(killsPoints));
 	killsText.setCharacterSize(20);
 
-
 	Clock clock;
 	Time elapsed = clock.restart();
 	const Time update_ms = milliseconds(30.0f);
-	list<Bullet*> bulletList;
 
 	while (window.isOpen())
 	{
@@ -60,10 +49,9 @@ int main()
 		elapsed += clock.restart();
 		if (elapsed.asMilliseconds() >= update_ms.asMilliseconds())
 		{
-			while (enemyOnScreen < 10)
+			while (MGR->GetCountEnemy() < 10)
 			{
 				MGR->SpawnEnemy(p, loader, win_width, win_height);
-				enemyOnScreen++;
 			}
 			elapsed -= update_ms;
 		}
@@ -81,20 +69,6 @@ int main()
 				MGR->SpawnBullet(p, loader);
 				cooldown = 0;
 			}
-			/*if (!bulletList.empty()) for (auto bullet : bulletList)
-			{
-				window.draw(bullet->checkEveryFrame().sprite);
-				for (auto enemy : enemyList)
-				{
-					if (enemy->checkCollision(*bullet))
-					{
-						enemy->deleted = true;
-						bullet->deleted = true;
-						enemyOnScreen--;
-						killsPoints++;
-					}
-				}
-			}*/
 			/*if (!enemyList.empty()) for (auto enemy : enemyList)
 			{
 				window.draw(enemy->sprite);
@@ -106,6 +80,5 @@ int main()
 			window.display();
 		}
 	}
-
 	return 0;
 }

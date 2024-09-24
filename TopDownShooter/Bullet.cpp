@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet(Texture texture, Vector2f position, float angle) :
-	GameObject(texture, position, angle, ObjType::Projectile)
+	GameObject(texture, position, angle, 0, 50, ObjType::Projectile)
 {
 
 }
@@ -20,11 +20,12 @@ void Bullet::Update(float dt)
 
 	if (lifeTime <= 0)
 	{
-		Message* m = new Message;
-		m->type = MsgType::Death;
-		m->sender = this;
-		m->death.who_to_die = this;
-		m->death.killer = this;
-		GameManager::GetInstance()->SendMsg(m);
+		Message* msg = new Message;
+		msg->type = MsgType::Death;
+		msg->death.type = ObjType::Projectile;
+		msg->sender = this;
+		msg->death.who_to_die = this;
+		msg->death.killer = this;
+		GameManager::GetInstance()->SendMsg(msg);
 	}
 }
