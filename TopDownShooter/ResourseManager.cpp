@@ -20,6 +20,12 @@ ResourseManager* ResourseManager::GetInstance()
 	return instance;
 }
 
+void ResourseManager::Destroy()
+{
+	if (instance) delete instance;
+	instance = nullptr;
+}
+
 Texture ResourseManager::GetTextureByName(const string &textureName)
 {
 	auto it = find_if(textures.begin(), textures.end(),

@@ -50,8 +50,8 @@ void GameManager::SpawnPlayer(int x, int y, ResourseManager* loader)
 void GameManager::SpawnEnemy(Player* player, ResourseManager* loader, int win_width, int win_height)
 {
 	float x = rand() % win_width, y = rand() % win_height;
-	while (!((x >= player->GetPosition().x + 50) || (x <= player->GetPosition().y - 50)) ||
-		!((y >= player->GetPosition().y + 50) || (y <= player->GetPosition().y - 50)))
+	while (!((x >= player->GetPosition().x + 120) || (x <= player->GetPosition().y - 120)) ||
+		!((y >= player->GetPosition().y + 120) || (y <= player->GetPosition().y - 120)))
 	{
 		x = rand() % 800;
 		y = rand() % 600;
@@ -100,7 +100,7 @@ void GameManager::CheckCollision()
 		{
 			for (auto enemy : enemies)
 			{
-				if (enemy->checkCollision(*bullet))
+				if (enemy->checkCollision(bullet))
 				{
 					Message* msg = new Message;
 					msg->type = MsgType::DealDamage;
@@ -118,6 +118,31 @@ void GameManager::CheckCollision()
 					msg->sender = bullet;
 					SendMsg(msg);
 				}
+			}
+		}
+	}
+
+	if (!enemies.empty())
+	{
+		for (auto enemy : enemies)
+		{
+			if (enemy->checkCollision(player))
+			{
+				Message* msg = new Message;
+				msg->type = MsgType::DealDamage;
+				msg->deal_damage.by_whom = enemy;
+				msg->deal_damage.damage = enemy->GetDamage();
+				msg->deal_damage.to_who = player;
+				msg->sender = enemy;
+				SendMsg(msg);
+
+				msg = new Message;
+				msg->type = MsgType::Death;
+				msg->death.type = ObjType::Enemy;
+				msg->death.killer = enemy;
+				msg->death.who_to_die = enemy;
+				msg->sender = enemy;
+				SendMsg(msg);
 			}
 		}
 	}
@@ -153,15 +178,21 @@ void GameManager::Update(float dt)
 			if (msg->death.type == ObjType::Enemy)
 			{
 				auto res = find(enemies.begin(), enemies.end(), msg->death.who_to_die);
-				delete* res;
-				enemies.erase(res);
-				enemy_on_screen--;
+				if (res != enemies.end())
+				{
+					delete* res;
+					enemies.erase(res);
+					enemy_on_screen--;
+				}
 			}
 			if (msg->death.type == ObjType::Projectile)
 			{
 				auto res = find(projectiles.begin(), projectiles.end(), msg->death.who_to_die);
-				delete* res;
-				projectiles.erase(res);
+				if (res != projectiles.end())
+				{
+					delete* res;
+					projectiles.erase(res);
+				}
 			}
 		} break;
 

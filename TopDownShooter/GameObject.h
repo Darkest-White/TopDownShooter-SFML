@@ -26,7 +26,7 @@ public:
 	GameObject(Texture texture, Vector2f position, float angle, int hp, int damage, ObjType type);
 	virtual ~GameObject();
 
-	virtual bool checkCollision(GameObject target);
+	virtual bool checkCollision(GameObject* target);
 
 	virtual Vector2f GetPosition();
 	virtual int GetDamage();

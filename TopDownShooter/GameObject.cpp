@@ -40,9 +40,9 @@ ObjType GameObject::GetType()
 	return type;
 }
 
-bool GameObject::checkCollision(GameObject target)
+bool GameObject::checkCollision(GameObject* target)
 {
-	if (this->sprite.getGlobalBounds().intersects(target.sprite.getGlobalBounds())) return true;
+	if (this->sprite.getGlobalBounds().intersects(target->sprite.getGlobalBounds())) return true;
 	else return false;
 }
 

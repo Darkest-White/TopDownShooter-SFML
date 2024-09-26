@@ -1,12 +1,7 @@
 #pragma once
-#include "SFML\System.hpp"
 #include "SFML\Graphics.hpp"
 #include <string>
-#include <sstream>
 #include <vector>
-#include <list>
-#include <iterator>
-#include <algorithm>
 using namespace std;
 using namespace sf;
 
@@ -23,6 +18,7 @@ private:
 
 public:
 	static ResourseManager* GetInstance();
+	static void Destroy();
 
 	void Load(string texture_name);
 	Texture GetTextureByName(const string&);

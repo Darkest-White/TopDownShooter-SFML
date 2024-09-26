@@ -2,7 +2,6 @@
 #include "GameManager.h"
 #include "ResourseManager.h"
 #include "Player.h"
-#include "Bullet.h"
 
 int main()
 {
@@ -18,15 +17,15 @@ int main()
 	MGR->SpawnPlayer(300, 400, RSR->GetInstance());
 
 	int cooldown = 0;
-	int killsPoints = 0;
+	/*int killsPoints = 0;
 
 	Font font;
-	font.loadFromFile("ARIAL.TTF");
+	font.loadFromFile("Skramp.ttf");
 	Text killsText;
 	killsText.setFont(font);
 	killsText.setFillColor(Color::Black);
 	killsText.setString(to_string(killsPoints));
-	killsText.setCharacterSize(20);
+	killsText.setCharacterSize(20);*/
 
 	Clock clock;
 	Time elapsed = clock.restart();
@@ -42,6 +41,7 @@ int main()
 		}
 
 		elapsed += clock.restart();
+
 		if (elapsed.asMilliseconds() >= update_ms.asMilliseconds())
 		{
 			while (MGR->GetCountEnemy() < 10)
@@ -51,7 +51,7 @@ int main()
 			elapsed -= update_ms;
 		}
 
-		if (elapsed.asMilliseconds() > update_ms.asMilliseconds() / 2.0f)
+		if (elapsed.asMilliseconds() > update_ms.asMilliseconds() / 2)
 		{
 			cooldown += 15;
 
@@ -64,14 +64,11 @@ int main()
 				MGR->SpawnBullet(MGR->GetPlayer(), RSR->GetInstance());
 				cooldown = 0;
 			}
-			/*if (!enemyList.empty()) for (auto enemy : enemyList)
-			{
-				window.draw(enemy->sprite);
-				if (enemy->checkCollision(player)) player.deleted = true;
-			}*/
+
+
 			MGR->GetPlayer()->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
-			killsText.setString(to_string(killsPoints));
-			window.draw(killsText);
+			//killsText.setString(to_string(killsPoints));
+			//window.draw(killsText);
 			window.display();
 		}
 	}

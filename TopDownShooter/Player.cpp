@@ -47,9 +47,15 @@ void Player::SendMSG(Message* m)
 	{
 		hp -= m->deal_damage.damage;
 
-		if (hp <= 0)
+		/*if (hp <= 0)
 		{
-			game_over = true;
-		}
+			Message* msg = new Message;
+			msg->type = MsgType::Death;
+			msg->death.type = ObjType::Player;
+			msg->death.killer = m->deal_damage.by_whom;
+			msg->death.who_to_die = this;
+			msg->sender = this;
+			GameManager::GetInstance()->SendMsg(msg);
+		}*/
 	}
 }
