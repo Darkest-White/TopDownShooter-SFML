@@ -136,7 +136,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ResourseManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SlowSlime.cpp" />
     <ClCompile Include="VectorMath.cpp" />
@@ -151,7 +151,7 @@
     <ClInclude Include="Message.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ResourseManager.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SlowSlime.h" />
     <ClInclude Include="VectorMath.h" />

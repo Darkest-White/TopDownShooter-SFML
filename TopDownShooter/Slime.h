@@ -2,7 +2,7 @@
 #include "Enemy.h"
 #include "GameManager.h"
 #include "GameObject.h"
-#include "ResourseManager.h"
+#include "ResourceManager.h"
 
 class Slime : public Enemy
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include"GameObject.h"
 #include"Message.h"
-#include"ResourseManager.h"
+#include"ResourceManager.h"
 #include<list>
 
 class Player;
@@ -11,7 +11,7 @@ class GameManager
 private:
 	static GameManager* instance;
 
-	ResourseManager* loader = ResourseManager::GetInstance();
+	ResourceManager* loader = ResourceManager::GetInstance();
 
 	Player* player;
 

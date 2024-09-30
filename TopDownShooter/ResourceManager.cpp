@@ -1,38 +1,38 @@
-#include "ResourseManager.h"
+#include "ResourceManager.h"
 
-ResourseManager* ResourseManager::instance = nullptr;
+ResourceManager* ResourceManager::instance = nullptr;
 
-ResourseManager::ResourseManager()
+ResourceManager::ResourceManager()
 {
 	Load("Actor.png");
 	Load("Bullet.png");
 }
 
-ResourseManager::~ResourseManager()
+ResourceManager::~ResourceManager()
 {
 	textures.clear();
 }
 
-ResourseManager* ResourseManager::GetInstance()
+ResourceManager* ResourceManager::GetInstance()
 {
-	if (instance == nullptr) instance = new ResourseManager();
+	if (instance == nullptr) instance = new ResourceManager();
 	return instance;
 }
 
-void ResourseManager::Destroy()
+void ResourceManager::Destroy()
 {
 	if (instance) delete instance;
 	instance = nullptr;
 }
 
-Texture ResourseManager::GetTextureByName(const string &textureName)
+Texture ResourceManager::GetTextureByName(const string &textureName)
 {
 	auto it = find_if(textures.begin(), textures.end(),
 		[&textureName](const pair<Texture, string>& element) { return element.second == textureName; });
 	return it->first;
 }
 
-void ResourseManager::Load(string texture_name)
+void ResourceManager::Load(string texture_name)
 {
 	Texture temp;
 	temp.loadFromFile(texture_name);

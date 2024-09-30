@@ -6,18 +6,18 @@ using namespace std;
 using namespace sf;
 
 
-class ResourseManager
+class ResourceManager
 {
 private:
-	static ResourseManager* instance;
+	static ResourceManager* instance;
 
 	vector<pair<Texture, string>> textures;
 
-	ResourseManager();
-	~ResourseManager();
+	ResourceManager();
+	~ResourceManager();
 
 public:
-	static ResourseManager* GetInstance();
+	static ResourceManager* GetInstance();
 	static void Destroy();
 
 	void Load(string texture_name);

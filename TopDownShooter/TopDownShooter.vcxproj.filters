@@ -45,7 +45,7 @@
     <ClCompile Include="VectorMath.cpp">
       <Filter>Исходные файлы\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ResourseManager.cpp">
+    <ClCompile Include="ResourceManager.cpp">
       <Filter>Исходные файлы\Basic Classes</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -86,7 +86,7 @@
     <ClInclude Include="VectorMath.h">
       <Filter>Исходные файлы\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ResourseManager.h">
+    <ClInclude Include="ResourceManager.h">
       <Filter>Исходные файлы\Basic Classes</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
