@@ -1,12 +1,11 @@
 #include <iostream>
 #include "GameManager.h"
-#include "ResourseManager.h"
 #include "Player.h"
 
 int main()
 {
 	int win_width = 1600;
-	int win_height = 900;
+	int win_height = 800;
 	RenderWindow window;
 	window.create(VideoMode(win_width, win_height), "TopDownShooter");
 	window.setVerticalSyncEnabled(true);
@@ -16,19 +15,15 @@ int main()
 	MGR->SpawnPlayer(300, 400);
 
 	int cooldown = 0;
-	/*int killsPoints = 0;
 
 	Font font;
 	font.loadFromFile("Skramp.ttf");
 	Text killsText;
 	killsText.setFont(font);
 	killsText.setFillColor(Color::Black);
-	killsText.setString(to_string(killsPoints));
-	killsText.setCharacterSize(20);*/
+	killsText.setCharacterSize(20);
 
 	Clock clock;
-	Time elapsed = clock.restart();
-	const Time update_ms = milliseconds(30.0f);
 
 	while (window.isOpen())
 	{
@@ -39,37 +34,27 @@ int main()
 			if (MGR->GetGameStatus()) window.close();
 		}
 
-		elapsed += clock.restart();
-
-		if (elapsed.asMilliseconds() >= update_ms.asMilliseconds())
+		while (MGR->GetCountEnemy() < 10)
 		{
-			while (MGR->GetCountEnemy() < 10)
-			{
-				MGR->SpawnEnemy(MGR->GetPlayer(), win_width, win_height);
-			}
-			elapsed -= update_ms;
+			MGR->SpawnEnemy(MGR->GetPlayer(), win_width, win_height);
 		}
 
-		if (elapsed.asMilliseconds() > update_ms.asMilliseconds() / 2)
+		window.clear(Color(244, 164, 96, 255));
+		MGR->Update(clock.restart().asSeconds());
+		MGR->DrawObjects(window);
+
+		cooldown += 15;
+		if (Mouse::isButtonPressed(Mouse::Left) && cooldown >= 200)
 		{
-			cooldown += 15;
-
-			window.clear(Color(244, 164, 96, 255));
-			MGR->Update(clock.restart().asSeconds());
-			MGR->DrawObjects(window);
-
-			if (Mouse::isButtonPressed(Mouse::Left) && cooldown >= 200)
-			{
-				MGR->SpawnBullet(MGR->GetPlayer());
-				cooldown = 0;
-			}
-
-
-			MGR->GetPlayer()->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
-			//killsText.setString(to_string(killsPoints));
-			//window.draw(killsText);
-			window.display();
+			MGR->SpawnBullet(MGR->GetPlayer());
+			cooldown = 0;
 		}
+
+		killsText.setString("Score " + to_string(MGR->GetScore()));
+
+		MGR->GetPlayer()->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
+		window.draw(killsText);
+		window.display();
 	}
 	return 0;
 }

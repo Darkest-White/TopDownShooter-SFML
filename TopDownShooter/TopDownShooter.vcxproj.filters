@@ -60,6 +60,12 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Исходные файлы\Projectiles</Filter>
     </ClCompile>
+    <ClCompile Include="FastSlime.cpp">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="SlowSlime.cpp">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -94,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Исходные файлы\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FastSlime.h">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="SlowSlime.h">
+      <Filter>Исходные файлы\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

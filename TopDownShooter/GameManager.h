@@ -20,6 +20,7 @@ private:
 	list<Message*> messages;
 
 	int enemy_on_screen = 0;
+	int score = 0;
 	bool game_over = false;
 
 	GameManager();
@@ -35,6 +36,7 @@ public:
 
 	int GetCountEnemy();
 	Player* GetPlayer();
+	int GetScore();
 	bool GetGameStatus();
 
 	void CheckCollision();

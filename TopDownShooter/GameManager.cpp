@@ -2,6 +2,8 @@
 #include "GameManager.h"
 
 #include"Slime.h"
+#include"FastSlime.h"
+#include"SlowSlime.h"
 #include"Player.h"
 #include"Bullet.h"
 
@@ -56,13 +58,38 @@ void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 		x = rand() % 800;
 		y = rand() % 600;
 	}
+	
+	int rand_x = rand() % 101;
 
-	Message* msg = new Message;
-	msg->type = MsgType::Create;
-	msg->create.type = ObjType::Enemy;
-	Slime* e = new Slime({ x, y }, player);
-	msg->create.new_object = e;
-	SendMsg(msg);
+	if (rand_x < 33)
+	{
+		Message* msg = new Message;
+		msg->type = MsgType::Create;
+		msg->create.type = ObjType::Enemy;
+		Slime* e = new Slime({ x, y }, player);
+		msg->create.new_object = e;
+		SendMsg(msg);
+	}
+
+	if (rand_x > 33 && rand_x < 66)
+	{
+		Message* msg = new Message;
+		msg->type = MsgType::Create;
+		msg->create.type = ObjType::Enemy;
+		FastSlime* e = new FastSlime({ x, y }, player);
+		msg->create.new_object = e;
+		SendMsg(msg);
+	}
+
+	if (rand_x > 66)
+	{
+		Message* msg = new Message;
+		msg->type = MsgType::Create;
+		msg->create.type = ObjType::Enemy;
+		SlowSlime* e = new SlowSlime({ x, y }, player);
+		msg->create.new_object = e;
+		SendMsg(msg);
+	}
 
 	enemy_on_screen++;
 }
@@ -85,6 +112,11 @@ int GameManager::GetCountEnemy()
 Player* GameManager::GetPlayer()
 {
 	return player;
+}
+
+int GameManager::GetScore()
+{
+	return score;
 }
 
 bool GameManager::GetGameStatus()
@@ -184,6 +216,7 @@ void GameManager::Update(float dt)
 					enemies.erase(res);
 					enemy_on_screen--;
 				}
+				score += 10;
 			}
 			if (msg->death.type == ObjType::Projectile)
 			{
