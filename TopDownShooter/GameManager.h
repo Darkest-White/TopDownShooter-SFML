@@ -11,6 +11,8 @@ class GameManager
 private:
 	static GameManager* instance;
 
+	ResourseManager* loader = ResourseManager::GetInstance();
+
 	Player* player;
 
 	list<GameObject*> enemies;
@@ -27,9 +29,9 @@ public:
 	static GameManager* GetInstance();
 	static void Destroy();
 
-	void SpawnPlayer(int x, int y, ResourseManager* loader);
-	void SpawnEnemy(Player* player, ResourseManager* loader, int win_width, int win_height);
-	void SpawnBullet(Player* player, ResourseManager* loader);
+	void SpawnPlayer(int x, int y);
+	void SpawnEnemy(Player* player, int win_width, int win_height);
+	void SpawnBullet(Player* player);
 
 	int GetCountEnemy();
 	Player* GetPlayer();

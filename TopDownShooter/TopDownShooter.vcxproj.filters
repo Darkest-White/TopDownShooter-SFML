@@ -16,24 +16,21 @@
     <Filter Include="Исходные файлы\Basic Classes">
       <UniqueIdentifier>{3a73c895-2ab8-454e-9d71-01bdd68c64c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
+    <Filter Include="Исходные файлы\Utils">
       <UniqueIdentifier>{d3825892-551c-4fdc-a52f-660600313332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Enemies">
+      <UniqueIdentifier>{b6b9bfdc-4417-440a-a33d-be897eaf0c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Projectiles">
+      <UniqueIdentifier>{241c60c7-4d5c-49b2-a2d9-79de4e14ba05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourseManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
@@ -46,23 +43,29 @@
       <Filter>Исходные файлы\Basic Classes</Filter>
     </ClCompile>
     <ClCompile Include="VectorMath.cpp">
-      <Filter>Utils</Filter>
+      <Filter>Исходные файлы\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourseManager.cpp">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Исходные файлы\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Исходные файлы\Projectiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourseManager.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
@@ -75,13 +78,23 @@
       <Filter>Исходные файлы\Basic Classes</Filter>
     </ClInclude>
     <ClInclude Include="VectorMath.h">
-      <Filter>Utils</Filter>
+      <Filter>Исходные файлы\Utils</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Bullet.png">
-      <Filter>Исходные файлы</Filter>
-    </Image>
+    <ClInclude Include="ResourseManager.h">
+      <Filter>Исходные файлы\Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Исходные файлы\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Исходные файлы\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Исходные файлы\Projectiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

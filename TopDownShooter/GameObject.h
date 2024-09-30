@@ -33,7 +33,7 @@ public:
 	virtual float GetAngle();
 	virtual ObjType GetType();
 
-	virtual void Update(float dt);
-	virtual void SendMSG(Message* m);
+	virtual void Update(float dt) = 0;
+	virtual void SendMSG(Message* m) = 0;
 	void Draw(RenderWindow& window);
 };

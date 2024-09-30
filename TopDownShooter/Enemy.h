@@ -8,7 +8,7 @@ protected:
 	float velocity = 1;
 
 	GameObject* target;
-	Vector2f direction;
+	//Vector2f direction;
 
 	void WatchTarget();
 	void Move(float dt);

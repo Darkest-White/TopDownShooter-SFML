@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -135,10 +136,12 @@
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourseManager.cpp" />
+    <ClCompile Include="Slime.cpp" />
     <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameManager.h" />
@@ -146,10 +149,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourseManager.h" />
+    <ClInclude Include="Slime.h" />
     <ClInclude Include="VectorMath.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Bullet.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

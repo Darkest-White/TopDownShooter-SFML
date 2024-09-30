@@ -1,7 +1,7 @@
 #include "SFML\Graphics.hpp"
 #include "GameManager.h"
 
-#include"Enemy.h"
+#include"Slime.h"
 #include"Player.h"
 #include"Bullet.h"
 
@@ -39,7 +39,7 @@ GameManager* GameManager::GetInstance()
 	return instance;
 }
 
-void GameManager::SpawnPlayer(int x, int y, ResourseManager* loader)
+void GameManager::SpawnPlayer(int x, int y)
 {
 	Vector2f position;
 	position.x = x;
@@ -47,7 +47,7 @@ void GameManager::SpawnPlayer(int x, int y, ResourseManager* loader)
 	player = new Player(loader->GetTextureByName("Actor.png"), position);
 }
 
-void GameManager::SpawnEnemy(Player* player, ResourseManager* loader, int win_width, int win_height)
+void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 {
 	float x = rand() % win_width, y = rand() % win_height;
 	while (!((x >= player->GetPosition().x + 120) || (x <= player->GetPosition().y - 120)) ||
@@ -60,19 +60,19 @@ void GameManager::SpawnEnemy(Player* player, ResourseManager* loader, int win_wi
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
 	msg->create.type = ObjType::Enemy;
-	Enemy* e = new Enemy(loader->GetTextureByName("Actor.png"), { x, y }, player);
+	Slime* e = new Slime({ x, y }, player);
 	msg->create.new_object = e;
 	SendMsg(msg);
 
 	enemy_on_screen++;
 }
 
-void GameManager::SpawnBullet(Player* player, ResourseManager* loader)
+void GameManager::SpawnBullet(Player* player)
 {
 	Message* msg = new Message;
 	msg->type = MsgType::Create;
 	msg->create.type = ObjType::Projectile;
-	Bullet* b = new Bullet(loader->GetTextureByName("Bullet.png"), player->GetPosition(), player->GetAngle());
+	Bullet* b = new Bullet(player->GetPosition(), player->GetAngle());
 	msg->create.new_object = b;
 	SendMsg(msg);
 }

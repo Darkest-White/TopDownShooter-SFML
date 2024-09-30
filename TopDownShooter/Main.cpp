@@ -12,9 +12,8 @@ int main()
 	window.setVerticalSyncEnabled(true);
 
 	GameManager* MGR = GameManager::GetInstance();
-	ResourseManager* RSR = ResourseManager::GetInstance();
 
-	MGR->SpawnPlayer(300, 400, RSR->GetInstance());
+	MGR->SpawnPlayer(300, 400);
 
 	int cooldown = 0;
 	/*int killsPoints = 0;
@@ -46,7 +45,7 @@ int main()
 		{
 			while (MGR->GetCountEnemy() < 10)
 			{
-				MGR->SpawnEnemy(MGR->GetPlayer(), RSR->GetInstance(), win_width, win_height);
+				MGR->SpawnEnemy(MGR->GetPlayer(), win_width, win_height);
 			}
 			elapsed -= update_ms;
 		}
@@ -61,7 +60,7 @@ int main()
 
 			if (Mouse::isButtonPressed(Mouse::Left) && cooldown >= 200)
 			{
-				MGR->SpawnBullet(MGR->GetPlayer(), RSR->GetInstance());
+				MGR->SpawnBullet(MGR->GetPlayer());
 				cooldown = 0;
 			}
 

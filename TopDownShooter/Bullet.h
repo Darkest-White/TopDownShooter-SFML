@@ -1,17 +1,12 @@
 #pragma once
-#include "GameObject.h"
+#include "Projectile.h"
 #include "GameManager.h"
+#include "ResourseManager.h"
+#include "Player.h"
 
-class Bullet : public GameObject
+class Bullet : public Projectile
 {
-protected:
-	float velocity = 25;
-	float lifeTime = 350;
-
 public:
-	Bullet(Texture texture, Vector2f position, float angle);
-	~Bullet();
-
-	virtual void Update(float dt);
+	Bullet(Vector2f position, float angle);
 };
 
