@@ -32,7 +32,12 @@ int main()
 	playButtonText.setFont(font);
 	playButtonText.setString("Start");
 	playButtonText.setCharacterSize(24);
-	playButtonText.setPosition(350, 110);
+	playButtonText.setPosition(586, 110);
+	Text quitButtonText;
+	quitButtonText.setFont(font);
+	quitButtonText.setString("Quit");
+	quitButtonText.setCharacterSize(24);
+	quitButtonText.setPosition(591, 160);
 
 	Clock clock;
 
@@ -50,6 +55,10 @@ int main()
 			if (playButtonText.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
 			{
 				GameManager::GetInstance()->menu = false;
+			}
+			if (quitButtonText.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+			{
+				window.close();
 			}
 		}
 
@@ -81,6 +90,7 @@ int main()
 		{
 			window.draw(back);
 			window.draw(playButtonText);
+			window.draw(quitButtonText);
 			window.display();
 		}
 	}
