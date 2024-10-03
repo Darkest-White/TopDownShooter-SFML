@@ -29,6 +29,12 @@ void Player::GoSide(int side)
 	if (side == 7) { position.x += velocity; position.y -= velocity; }
 }
 
+void Player::Renewal()
+{
+	sprite.setPosition(300, 400);
+	hp = 100;
+}
+
 void Player::Update(float dt)
 {
 	if (Keyboard::isKeyPressed(Keyboard::A) && Keyboard::isKeyPressed(Keyboard::S)) GoSide(3);

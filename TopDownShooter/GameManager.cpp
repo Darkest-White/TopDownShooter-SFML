@@ -124,6 +124,39 @@ bool GameManager::GetGameStatus()
 	return game_over;
 }
 
+bool GameManager::GetMenuStatus()
+{
+	return menu;
+}
+
+void GameManager::ResetGame()
+{
+	game_over = false;
+	menu = true;
+	
+	for (auto x : enemies)
+	{
+		delete x;
+	}
+	enemies.clear();
+
+	for (auto x : projectiles)
+	{
+		delete x;
+	}
+	projectiles.clear();
+
+	for (auto x : messages)
+	{
+		delete x;
+	}
+	messages.clear();
+
+	player->Renewal();
+	score = 0;
+	enemy_on_screen = 0;
+}
+
 void GameManager::CheckCollision()
 {
 	if (!projectiles.empty())

@@ -6,6 +6,7 @@ ResourceManager::ResourceManager()
 {
 	Load("Actor.png");
 	Load("Bullet.png");
+	Load("Background.png");
 }
 
 ResourceManager::~ResourceManager()

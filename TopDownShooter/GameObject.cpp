@@ -15,7 +15,7 @@ GameObject::~GameObject()
 
 void GameObject::CreateSprite()
 {
-	sprite.setTexture(texture, true);
+	sprite.setTexture(texture);
 	sprite.setPosition(position);
 	sprite.setOrigin(sprite.getTextureRect().height / 2, sprite.getTextureRect().width / 2);
 }

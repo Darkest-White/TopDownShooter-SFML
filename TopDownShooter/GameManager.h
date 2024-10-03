@@ -38,6 +38,10 @@ public:
 	Player* GetPlayer();
 	int GetScore();
 	bool GetGameStatus();
+	bool GetMenuStatus();
+
+	bool menu = true;
+	void ResetGame();
 
 	void CheckCollision();
 
