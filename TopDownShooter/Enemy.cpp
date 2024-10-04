@@ -43,8 +43,8 @@ void Enemy::Move(float dt)
 	//position.x += direction.x * velocity * dt;
 	//position.y += direction.y * velocity * dt;
 
-	position.x += velocity * sin((angle * 3.14) / 180.0);
-	position.y += velocity * -cos((angle * 3.14) / 180.0);
+	position.x += (velocity * sin((angle * 3.14) / 180.0) * dt);
+	position.y += (velocity * -cos((angle * 3.14) / 180.0) * dt);
 }
 
 void Enemy::Update(float dt)

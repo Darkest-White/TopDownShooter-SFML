@@ -5,7 +5,7 @@
 class Enemy : public GameObject
 {
 protected:
-	float velocity = 1;
+	float velocity = 100;
 
 	GameObject* target;
 	//Vector2f direction;

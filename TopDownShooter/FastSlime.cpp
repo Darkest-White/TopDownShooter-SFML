@@ -4,5 +4,5 @@ FastSlime::FastSlime(Vector2f position, GameObject* target) :
 	Enemy(ResourceManager::GetInstance()->GetTextureByName("Actor.png"), position, target)
 {
 	hp = 50;
-	velocity = 2;
+	velocity = 200;
 }
