@@ -14,7 +14,6 @@ private:
 	ResourceManager* loader = ResourceManager::GetInstance();
 
 	Player* player;
-
 	list<GameObject*> enemies;
 	list<GameObject*> projectiles;
 	list<Message*> messages;
