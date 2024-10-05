@@ -6,7 +6,7 @@ class Player : public GameObject
 {
 private:
 	int hp = 100;
-	float velocity = 150;
+	float velocity = 200;
 
 public:
 	Player(Texture texture, Vector2f position);

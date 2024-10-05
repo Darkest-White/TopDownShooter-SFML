@@ -18,7 +18,6 @@ private:
 	list<GameObject*> projectiles;
 	list<Message*> messages;
 
-	int enemy_on_screen = 0;
 	int score = 0;
 	bool game_over = false;
 
@@ -39,6 +38,7 @@ public:
 	bool GetGameStatus();
 	bool GetMenuStatus();
 
+	int enemy_on_screen = 0;
 	bool menu = true;
 	void ResetGame();
 

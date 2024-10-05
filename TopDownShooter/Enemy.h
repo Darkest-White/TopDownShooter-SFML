@@ -8,10 +8,9 @@ protected:
 	float velocity = 100;
 
 	GameObject* target;
-	//Vector2f direction;
 
 	void WatchTarget();
-	void Move(float dt);
+	virtual void Move(float dt);
 
 public:
 	Enemy(Texture texture, Vector2f position, GameObject* player);
