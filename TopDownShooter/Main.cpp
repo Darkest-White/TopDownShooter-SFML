@@ -25,9 +25,9 @@ int main()
 	killsText.setCharacterSize(20);
 	Text hpText;
 	hpText.setFont(font);
-	hpText.setFillColor(Color::Black);
+	hpText.setFillColor(Color::Red);
 	hpText.setCharacterSize(20);
-	hpText.setPosition(300, 0);
+	hpText.setPosition(110, 0);
 
 	Texture texture;
 	texture.loadFromFile("Background.png");
