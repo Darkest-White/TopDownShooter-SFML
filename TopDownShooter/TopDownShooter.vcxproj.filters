@@ -16,9 +16,6 @@
     <Filter Include="Исходные файлы\Basic Classes">
       <UniqueIdentifier>{3a73c895-2ab8-454e-9d71-01bdd68c64c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Utils">
-      <UniqueIdentifier>{d3825892-551c-4fdc-a52f-660600313332}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\Enemies">
       <UniqueIdentifier>{b6b9bfdc-4417-440a-a33d-be897eaf0c4a}</UniqueIdentifier>
     </Filter>
@@ -41,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="Message.cpp">
       <Filter>Исходные файлы\Basic Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorMath.cpp">
-      <Filter>Исходные файлы\Utils</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Исходные файлы\Basic Classes</Filter>
@@ -82,9 +76,6 @@
     </ClInclude>
     <ClInclude Include="Message.h">
       <Filter>Исходные файлы\Basic Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorMath.h">
-      <Filter>Исходные файлы\Utils</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
       <Filter>Исходные файлы\Basic Classes</Filter>

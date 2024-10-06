@@ -9,7 +9,7 @@ protected:
 	float lifeTime = 350;
 
 public:
-	Projectile(Texture texture, Vector2f position, float angle);
+	Projectile(Texture texture, Vector2f position, float angle, int damage);
 	~Projectile();
 
 	virtual void Update(float dt);

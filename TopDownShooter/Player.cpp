@@ -29,10 +29,15 @@ void Player::GoSide(int side, float dt)
 	if (side == 7) { position.x += velocity * dt; position.y -= velocity * dt; }
 }
 
+int Player::GetHP()
+{
+	return hp;
+}
+
 void Player::Renewal()
 {
-	sprite.setPosition(300, 400);
-	hp = 100;
+	position = { 300, 400 };
+	hp = 200;
 }
 
 void Player::Update(float dt)

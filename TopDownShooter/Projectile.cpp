@@ -1,7 +1,7 @@
 #include "Projectile.h"
 
-Projectile::Projectile(Texture texture, Vector2f position, float angle) :
-	GameObject(texture, position, angle, 0, 50, ObjType::Projectile)
+Projectile::Projectile(Texture texture, Vector2f position, float angle, int damage) :
+	GameObject(texture, position, angle, 0, damage, ObjType::Projectile)
 {
 
 }

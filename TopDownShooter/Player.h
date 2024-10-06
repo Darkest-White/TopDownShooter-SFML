@@ -5,7 +5,7 @@
 class Player : public GameObject
 {
 private:
-	int hp = 100;
+	int hp = 200;
 	float velocity = 200;
 
 public:
@@ -14,6 +14,8 @@ public:
 
 	void WatchTarget(float mouse_x, float mouse_y);
 	void GoSide(int side, float dt);
+
+	virtual int GetHP();
 
 	void Renewal();
 

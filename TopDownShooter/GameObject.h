@@ -27,6 +27,7 @@ public:
 	virtual bool checkCollision(GameObject* target);
 
 	virtual Vector2f GetPosition();
+	virtual int GetHP();
 	virtual int GetDamage();
 	virtual float GetAngle();
 	virtual ObjType GetType();

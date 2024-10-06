@@ -52,13 +52,14 @@ void GameManager::SpawnPlayer(int x, int y)
 void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 {
 	float x = rand() % win_width, y = rand() % win_height;
-	while (!((x >= player->GetPosition().x + 120) || (x <= player->GetPosition().y - 120)) ||
+
+	while (!((x >= player->GetPosition().x + 120) || (x <= player->GetPosition().y - 120)) &&
 		!((y >= player->GetPosition().y + 120) || (y <= player->GetPosition().y - 120)))
 	{
-		x = rand() % 800;
-		y = rand() % 600;
+		x = rand() % win_width;
+		y = rand() % win_height;
 	}
-	
+
 	int rand_x = rand() % 101;
 
 	if (rand_x < 33)
@@ -69,6 +70,7 @@ void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 		Slime* e = new Slime({ x, y }, player);
 		msg->create.new_object = e;
 		SendMsg(msg);
+		enemy_on_screen++;
 	}
 
 	if (rand_x > 33 && rand_x < 66)
@@ -79,6 +81,7 @@ void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 		FastSlime* e = new FastSlime({ x, y }, player);
 		msg->create.new_object = e;
 		SendMsg(msg);
+		enemy_on_screen++;
 	}
 
 	if (rand_x > 66)
@@ -89,9 +92,8 @@ void GameManager::SpawnEnemy(Player* player, int win_width, int win_height)
 		SlowSlime* e = new SlowSlime({ x, y }, player);
 		msg->create.new_object = e;
 		SendMsg(msg);
+		enemy_on_screen++;
 	}
-
-	enemy_on_screen++;
 }
 
 void GameManager::SpawnBullet(Player* player)

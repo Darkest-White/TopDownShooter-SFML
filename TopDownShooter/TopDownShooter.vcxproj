@@ -139,7 +139,6 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SlowSlime.cpp" />
-    <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -154,7 +153,6 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SlowSlime.h" />
-    <ClInclude Include="VectorMath.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

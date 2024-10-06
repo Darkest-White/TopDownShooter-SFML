@@ -29,6 +29,7 @@ void SlowSlime::SendMSG(Message* msg)
 			Slime* e = new Slime({ position.x - 10, position.y }, target);
 			m->create.new_object = e;
 			GameManager::GetInstance()->SendMsg(m);
+			GameManager::GetInstance()->enemy_on_screen++;
 
 			m = new Message;
 			m->type = MsgType::Create;
@@ -36,8 +37,7 @@ void SlowSlime::SendMSG(Message* msg)
 			e = new Slime({ position.x + 10, position.y }, target);
 			m->create.new_object = e;
 			GameManager::GetInstance()->SendMsg(m);
-
-			GameManager::GetInstance()->enemy_on_screen += 2;
+			GameManager::GetInstance()->enemy_on_screen++;
 		}
 	}
 }

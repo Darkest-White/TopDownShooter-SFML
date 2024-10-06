@@ -23,6 +23,11 @@ int main()
 	killsText.setFont(font);
 	killsText.setFillColor(Color::Black);
 	killsText.setCharacterSize(20);
+	Text hpText;
+	hpText.setFont(font);
+	hpText.setFillColor(Color::Black);
+	hpText.setCharacterSize(20);
+	hpText.setPosition(300, 0);
 
 	Texture texture;
 	texture.loadFromFile("Background.png");
@@ -81,9 +86,11 @@ int main()
 			}
 
 			killsText.setString("Score " + to_string(MGR->GetScore()));
+			hpText.setString("HP " + to_string(MGR->GetPlayer()->GetHP()));
 
 			MGR->GetPlayer()->WatchTarget(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
 			window.draw(killsText);
+			window.draw(hpText);
 			window.display();
 		}
 		else

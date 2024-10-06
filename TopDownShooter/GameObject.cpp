@@ -30,6 +30,11 @@ int GameObject::GetDamage()
 	return damage;
 }
 
+int GameObject::GetHP()
+{
+	return hp;
+}
+
 float GameObject::GetAngle()
 {
 	return angle;
