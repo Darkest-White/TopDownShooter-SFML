@@ -13,8 +13,8 @@ Projectile::~Projectile()
 
 void Projectile::Update(float dt)
 {
-	position.x += velocity * sin((angle * 3.14) / 180.0);
-	position.y += velocity * -cos((angle * 3.14) / 180.0);
+	position.x += (velocity * sin((angle * 3.14) / 180.0)) * dt;
+	position.y += (velocity * -cos((angle * 3.14) / 180.0)) * dt;
 
 	lifeTime -= 15;
 

@@ -5,7 +5,7 @@
 class Projectile : public GameObject
 {
 protected:
-	float velocity = 25;
+	float velocity = 1200;
 	float lifeTime = 350;
 
 public:

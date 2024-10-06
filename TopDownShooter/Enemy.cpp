@@ -3,7 +3,7 @@
 Enemy::Enemy(Texture texture, Vector2f position, GameObject* target) :
 	GameObject(texture, position, 0, 100, 50, ObjType::Enemy), target(target)
 {
-
+	sprite.setColor(Color::Red);
 }
 
 Enemy::~Enemy()
